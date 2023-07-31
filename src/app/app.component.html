@@ -1,3 +1,51 @@
-<div class="h-screen flex justify-center items-center">
-  <h1 class="text-2xl font-bold">Home Banking</h1>
+<div class="sm:flex">
+  <div class="sm:basis-1/4 sm:max-w-[15rem] px-4 py-4">
+    <h1 class="text-lg font-bold mb-2">Banco SinNombre</h1>
+    <nav class="h-full flex flex-col gap-8">
+      <ul class="space-y-2">
+        <li>
+          <a
+            routerLink="/accounts"
+            class="hover:opacity-50 transition-opacity duration-300"
+            >Accounts</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/cards"
+            class="hover:opacity-50 transition-opacity duration-300"
+            >Cards</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/transactions"
+            class="hover:opacity-50 transition-opacity duration-300"
+            >Transactions</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/transfer"
+            class="hover:opacity-50 transition-opacity duration-300"
+            >Transfer</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/loans"
+            class="hover:opacity-50 transition-opacity duration-300"
+            >Loans</a
+          >
+        </li>
+      </ul>
+      <ul class="space-y-2">
+        <li><a routerLink="/login">Sign in</a></li>
+        <li><a routerLink="/register">Sign up</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main class="px-4 py-4">
+    <router-outlet></router-outlet>
+  </main>
 </div>
