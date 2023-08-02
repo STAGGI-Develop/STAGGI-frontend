@@ -11,6 +11,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { LoansComponent } from './loans/loans.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
     LoansComponent,
     LoginComponent,
     RegisterComponent,
+    OverviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

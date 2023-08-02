@@ -8,6 +8,7 @@ import { TransferComponent } from './transfer/transfer.component';
 import { LoansComponent } from './loans/loans.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { OverviewComponent } from './overview/overview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accounts', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'loans', component: LoansComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'overview', component: OverviewComponent },
 ];
 
 @NgModule({
