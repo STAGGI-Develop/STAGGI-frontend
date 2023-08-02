@@ -1,63 +1,70 @@
-<div class="sm:flex">
-  <div class="sm:basis-1/4 sm:max-w-[15rem] px-4 py-4">
-    <h1 class="text-lg font-bold mb-2">Banco SinNombre</h1>
-    <nav class="h-full flex flex-col gap-8">
-      <ul class="space-y-2">
-        <li>
-          <a
-            routerLink="/accounts"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Accounts</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/cards"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Cards</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/transactions"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Transactions</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/transfer"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Transfer</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/loans"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Loans</a
-          >
-        </li>
-      </ul>
-      <ul class="space-y-2">
-        <li>
-          <a
-            routerLink="/login"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Sign in</a
-          >
-        </li>
-        <li>
-          <a
-            routerLink="/register"
-            class="hover:opacity-50 transition-opacity duration-300"
-            >Sign up</a
-          >
-        </li>
-      </ul>
+<div class="h-screen sm:flex">
+  <div
+    class="box-border w-[240px] h-full overflow-hidden flex flex-col items-center justify-start border-r-[1px] border-solid border-gray"
+  >
+    <div
+      id="LogoContainer"
+      class="self-stretch h-[110px] overflow-hidden shrink-0 flex flex-col items-center justify-center"
+    >
+      <img
+        class="relative w-[140px] h-auto overflow-hidden shrink-0"
+        alt=""
+        src="/assets/logocompact-1.svg"
+      />
+    </div>
+    <nav
+      class="flex flex-col items-center justify-start w-full px-4 m-0 overflow-hidden text-sm text-left text-dimgray font-encode"
+    >
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/overview"
+      >
+        <div class="relative">Inicio</div>
+      </a>
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/accounts"
+      >
+        <div class="relative">Cuentas</div>
+      </a>
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/cards"
+      >
+        <div class="relative">Tarjetas</div>
+      </a>
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/loans"
+      >
+        <div class="relative">Préstamos</div>
+      </a>
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/transactions"
+      >
+        <div class="relative">Transferencias</div>
+      </a>
+      <a
+        [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
+        routerLink="/investment"
+      >
+        <div class="relative">Inversiones</div>
+      </a>
     </nav>
   </div>
-  <main class="px-4 py-4">
-    <router-outlet></router-outlet>
-  </main>
+  <div class="w-full">
+    <div
+      class="box-border w-full h-[60px] overflow-hidden border-b-[1px] border-solid border-gray"
+    ></div>
+    <main class="px-4 py-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>
