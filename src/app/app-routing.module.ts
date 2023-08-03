@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { OverviewComponent } from './overview/overview.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/accounts', pathMatch: 'full' },
+  { path: '', redirectTo: '/overview', pathMatch: 'full' },
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/:accountId', component: AccountComponent },
   { path: 'transactions', component: TransactionsComponent },
