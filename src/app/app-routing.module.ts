@@ -13,7 +13,7 @@ import { OverviewComponent } from './overview/overview.component';
 const routes: Routes = [
   { path: '', redirectTo: '/overview', pathMatch: 'full' },
   { path: 'accounts', component: AccountsComponent },
-  { path: 'accounts/:accountId', component: AccountComponent },
+  { path: 'accounts/:id', component: AccountComponent },
   { path: 'transactions', component: TransactionsComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'transfer', component: TransferComponent },
