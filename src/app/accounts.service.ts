@@ -19,4 +19,14 @@ export class AccountsService {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Account>(url);
   }
+
+  createAccount() {
+    const url = `${BASE_URL}/clients/current/accounts`;
+    return this.http.post<Account>(url, null);
+  }
+
+  getClientAccounts() {
+    const url = `${BASE_URL}/clients/current/accounts`;
+    return this.http.get<Accounts>(url);
+  }
 }

@@ -62,3 +62,10 @@ export interface ClientLoan {
 export interface ClientLoans {
   $values: ClientLoan[];
 }
+
+export interface Transfer {
+  Amount: number;
+  Description: string;
+  FromAccountNumber: string;
+  ToAccountNumber: string;
+}
