@@ -22,11 +22,11 @@ export class AccountsService {
 
   createAccount() {
     const url = `${BASE_URL}/clients/current/accounts`;
-    return this.http.post<Account>(url, null);
+    return this.http.post<Account>(url, null, { withCredentials: true });
   }
 
   getClientAccounts() {
     const url = `${BASE_URL}/clients/current/accounts`;
-    return this.http.get<Accounts>(url);
+    return this.http.get<Accounts>(url, { withCredentials: true });
   }
 }

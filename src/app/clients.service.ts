@@ -22,7 +22,7 @@ export class ClientsService {
 
   getCurrentClient() {
     const url = `${this.baseUrl}/current`;
-    return this.http.get<Client>(url);
+    return this.http.get<Client>(url, { withCredentials: true });
   }
 
   createClient(credentials: {

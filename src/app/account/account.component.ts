@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Account } from '../interfaces';
 import { AccountsService } from '../accounts.service';
 
@@ -13,7 +14,8 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private accountsService: AccountsService
+    private accountsService: AccountsService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -25,5 +27,9 @@ export class AccountComponent implements OnInit {
     this.accountsService
       .getAccountById(id)
       .subscribe((account) => (this.account = account));
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

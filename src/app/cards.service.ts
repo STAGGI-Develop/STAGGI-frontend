@@ -15,10 +15,10 @@ export class CardsService {
     Type: 'CREDIT' | 'DEBIT';
     Color: 'SILVER' | 'GOLD' | 'TITANIUM';
   }) {
-    return this.http.post<Card>(this.baseUrl, data);
+    return this.http.post<Card>(this.baseUrl, data, { withCredentials: true });
   }
 
   getCards() {
-    return this.http.get<Cards>(this.baseUrl);
+    return this.http.get<Cards>(this.baseUrl, { withCredentials: true });
   }
 }

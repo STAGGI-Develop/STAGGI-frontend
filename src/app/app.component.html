@@ -17,8 +17,9 @@
     >
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
+        [routerLinkActiveOptions]="{ exact: true }"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
-        routerLink="/overview"
+        routerLink="/"
       >
         <div class="relative">Inicio</div>
       </a>
@@ -50,13 +51,19 @@
       >
         <div class="relative">Transferencias</div>
       </a>
-      <a
+      <!-- <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/investment"
       >
         <div class="relative">Inversiones</div>
-      </a>
+      </a> -->
+      <button
+        (click)="logout()"
+        class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke active:text-white active:bg-steelblue"
+      >
+        Cerrar sesión
+      </button>
     </nav>
   </div>
   <div class="w-full">
@@ -64,7 +71,10 @@
       class="box-border w-full h-[60px] overflow-hidden border-b-[1px] border-solid border-gray"
     ></div>
     <main class="px-4 py-4">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="client; else login"></router-outlet>
+      <ng-template #login>
+        <app-login (userLoggedIn)="getClient()"></app-login>
+      </ng-template>
     </main>
   </div>
 </div>

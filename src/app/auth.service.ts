@@ -12,7 +12,7 @@ export class AuthService {
 
   login(credentials: { email: string; password: string }) {
     const url = `${this.baseUrl}/login`;
-    return this.http.post(url, credentials);
+    return this.http.post(url, credentials, { withCredentials: true });
   }
 
   logout() {

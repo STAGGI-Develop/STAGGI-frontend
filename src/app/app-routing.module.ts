@@ -9,18 +9,18 @@ import { LoansComponent } from './loans/loans.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { OverviewComponent } from './overview/overview.component';
+import { CreateCardComponent } from './create-card/create-card.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/overview', pathMatch: 'full' },
+  { path: '', component: OverviewComponent, pathMatch: 'full' },
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/:id', component: AccountComponent },
   { path: 'transactions', component: TransactionsComponent },
   { path: 'cards', component: CardsComponent },
+  { path: 'cards/create', component: CreateCardComponent },
   { path: 'transfer', component: TransferComponent },
   { path: 'loans', component: LoansComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'overview', component: OverviewComponent },
 ];
 
 @NgModule({

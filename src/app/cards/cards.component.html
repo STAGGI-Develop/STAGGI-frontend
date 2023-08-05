@@ -1,1 +1,15 @@
-<p>cards works!</p>
+<h2>Tarjetas</h2>
+
+<a routerLink="/cards/create">Crear tarjeta</a>
+
+<div *ngIf="cards" class="grid gap-4">
+  <div *ngFor="let card of cards">
+    <p>{{ card.number }}</p>
+    <p>{{ card.cardHolder }}</p>
+    <p>{{ card.type }}</p>
+    <p>{{ card.color }}</p>
+    <p>{{ card.cvv }}</p>
+    <p>{{ card.fromDate }}</p>
+    <p>{{ card.thruDate }}</p>
+  </div>
+</div>

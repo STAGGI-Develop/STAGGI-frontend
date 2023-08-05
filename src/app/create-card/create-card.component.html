@@ -1,0 +1,23 @@
+<h2>Crear tarjeta</h2>
+
+<button (click)="goBack()">Volver</button>
+
+<form [formGroup]="cardForm" (submit)="onSubmit()">
+  <div>
+    <select formControlName="type">
+      <option [ngValue]="null" disabled>Seleccione un tipo de tarjeta</option>
+      <option *ngFor="let type of types" [ngValue]="type">
+        {{ type | titlecase }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <select formControlName="color">
+      <option [ngValue]="null">Seleccione un color</option>
+      <option *ngFor="let color of colors" [ngValue]="color">
+        {{ color | titlecase }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Crear</button>
+</form>

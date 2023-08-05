@@ -20,7 +20,13 @@ export class AccountsComponent implements OnInit {
 
   getAccounts(): void {
     this.accountsService
-      .getAccounts()
+      .getClientAccounts()
       .subscribe((accounts) => (this.accounts = accounts.$values));
+  }
+
+  createAccount() {
+    this.accountsService
+      .createAccount()
+      .subscribe((account) => this.accounts.push(account));
   }
 }
