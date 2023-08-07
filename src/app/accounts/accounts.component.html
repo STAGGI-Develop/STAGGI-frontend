@@ -1,1 +1,16 @@
-<p>accounts works!</p>
+<h2 class="text-2xl font-bold">Cuentas</h2>
+
+<div class="grid gap-4">
+  <button *ngIf="accounts.length < 3" (click)="createAccount()">
+    Crear cuenta
+  </button>
+  <div *ngFor="let account of accounts">
+    <h2 class="font-bold">
+      <a class="hover:opacity-50" routerLink="/accounts/{{ account.id }}">{{
+        account.number
+      }}</a>
+    </h2>
+    <p>${{ account.balance }}</p>
+    <p>{{ account.creationDate }}</p>
+  </div>
+</div>

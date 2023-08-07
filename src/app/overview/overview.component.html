@@ -1,1 +1,17 @@
-<p>overview works!</p>
+<h2 class="font-bold">Overview</h2>
+
+<div *ngIf="client">
+  <p class="font-bold">{{ client.firstName }} {{ client.lastName }}</p>
+  <p>{{ client.email }}</p>
+  <h3 class="font-bold">Cuentas</h3>
+  <div *ngFor="let account of client.accounts.$values">
+    <p>{{ account.number }}</p>
+    <p>{{ account.balance }}</p>
+  </div>
+  <h3 class="font-bold">Tarjetas</h3>
+  <div *ngFor="let card of client.cards.$values">
+    <p>{{ card.number }}</p>
+    <p>{{ card.type }}</p>
+    <p>{{ card.color }}</p>
+  </div>
+</div>

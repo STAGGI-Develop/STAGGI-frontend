@@ -3,9 +3,13 @@ export interface Client {
   firstName: string;
   lastName: string;
   email: string;
-  accounts: Account[];
-  credits: ClientLoan[];
-  cards: Card[];
+  accounts: Accounts;
+  credits: ClientLoans;
+  cards: Cards;
+}
+
+export interface Clients {
+  $values: Client[];
 }
 
 export interface Account {
@@ -13,7 +17,11 @@ export interface Account {
   number: string;
   creationDate: string | Date;
   balance: number;
-  transactions: Transaction[];
+  transactions: Transactions;
+}
+
+export interface Accounts {
+  $values: Account[];
 }
 
 export interface Transaction {
@@ -22,6 +30,10 @@ export interface Transaction {
   amount: number;
   description: string;
   date: string | Date;
+}
+
+export interface Transactions {
+  $values: Transaction[];
 }
 
 export interface Card {
@@ -35,10 +47,25 @@ export interface Card {
   thruDate: string | Date;
 }
 
+export interface Cards {
+  $values: Card[];
+}
+
 export interface ClientLoan {
   id: number;
   loanId: number;
   name: string;
   amount: number;
   payments: number;
+}
+
+export interface ClientLoans {
+  $values: ClientLoan[];
+}
+
+export interface Transfer {
+  Amount: number;
+  Description: string;
+  FromAccountNumber: string;
+  ToAccountNumber: string;
 }
