@@ -12,6 +12,6 @@ export class TransactionsService {
   constructor(private http: HttpClient) {}
 
   createTransaction(transfer: Transfer) {
-    this.http.post(this.baseUrl, transfer);
+    return this.http.post(this.baseUrl, transfer, { withCredentials: true });
   }
 }

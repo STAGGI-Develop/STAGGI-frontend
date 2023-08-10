@@ -9,7 +9,6 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { CardsComponent } from './cards/cards.component';
 import { AccountComponent } from './account/account.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { TransferComponent } from './transfer/transfer.component';
 import { LoansComponent } from './loans/loans.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -23,7 +22,6 @@ import { CreateCardComponent } from './create-card/create-card.component';
     CardsComponent,
     AccountComponent,
     TransactionsComponent,
-    TransferComponent,
     LoansComponent,
     LoginComponent,
     RegisterComponent,
