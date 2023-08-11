@@ -9,6 +9,8 @@ import { Card } from '../interfaces';
 })
 export class CardsComponent implements OnInit {
   cards?: Card[];
+  debitCards?: Card[];
+  creditCards?: Card[];
 
   constructor(private http: CardsService) {}
 
@@ -17,6 +19,10 @@ export class CardsComponent implements OnInit {
   }
 
   getCards() {
-    this.http.getCards().subscribe((cards) => (this.cards = cards.$values));
+    this.http.getCards().subscribe((cards) => {
+      this.cards = cards.$values;
+      this.debitCards = this.cards.filter((c) => c.type === "DEBIT");
+      this.creditCards = this.cards.filter((c) => c.type === "CREDIT");
+    });
   }
 }

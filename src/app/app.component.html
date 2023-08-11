@@ -13,7 +13,7 @@
       />
     </div>
     <nav
-      class="flex flex-col items-center justify-start w-full px-4 m-0 overflow-hidden text-sm text-left text-dimgray font-encode"
+      class="flex flex-col items-center justify-start w-full px-4 m-0 overflow-hidden text-base text-left text-dimgray font-encode"
     >
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
@@ -67,10 +67,11 @@
     </nav>
   </div>
   <div class="w-full">
-    <div
+    <!-- <div
       class="box-border w-full h-[60px] overflow-hidden border-b-[1px] border-solid border-gray"
+    ></div> -->
     ></div>
-    <main class="px-4 py-4">
+    <main class="w-full px-[60px] pt-[32px] pb-0">
       <router-outlet *ngIf="client; else auth"></router-outlet>
       <ng-template #auth>
         <app-register *ngIf="registerRoute; else login"></app-register>
