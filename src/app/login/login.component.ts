@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,17 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     if (!email || !password) return;
     if (this.loginForm.valid) {
-      this.authService
-        .login({ email, password })
-        .subscribe(() => this.userLoggedIn.emit(true));
+      this.authService.login({ email, password }).subscribe(() => {
+        this.userLoggedIn.emit(true);
+        this.router.navigate(['/']);
+      });
     } else {
       console.error('Algo salió mal');
     }

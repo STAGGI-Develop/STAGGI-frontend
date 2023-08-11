@@ -71,9 +71,12 @@
       class="box-border w-full h-[60px] overflow-hidden border-b-[1px] border-solid border-gray"
     ></div>
     <main class="px-4 py-4">
-      <router-outlet *ngIf="client; else login"></router-outlet>
-      <ng-template #login>
-        <app-login (userLoggedIn)="getClient()"></app-login>
+      <router-outlet *ngIf="client; else auth"></router-outlet>
+      <ng-template #auth>
+        <app-register *ngIf="registerRoute; else login"></app-register>
+        <ng-template #login>
+          <app-login (userLoggedIn)="getClient()"></app-login>
+        </ng-template>
       </ng-template>
     </main>
   </div>

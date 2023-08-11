@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'cards', component: CardsComponent },
   { path: 'cards/create', component: CreateCardComponent },
   { path: 'loans', component: LoansComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
 
