@@ -51,6 +51,17 @@ export interface Cards {
   $values: Card[];
 }
 
+export interface Loan {
+  id: number;
+  name: string;
+  maxAmount: number;
+  payments: string;
+}
+
+export interface Loans {
+  $values: Loan[];
+}
+
 export interface ClientLoan {
   id: number;
   loanId: number;
@@ -67,5 +78,12 @@ export interface Transfer {
   Amount: number;
   Description: string;
   FromAccountNumber: string;
+  ToAccountNumber: string;
+}
+
+export interface LoanApplication {
+  LoanId: number;
+  Amount: number;
+  Payments: string;
   ToAccountNumber: string;
 }

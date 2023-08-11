@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { ClientsService } from './clients.service';
 import { Client } from './interfaces';
 import { AuthService } from './auth.service';
@@ -12,10 +13,20 @@ export class AppComponent implements OnInit {
   // userLoggedIn: boolean = false;
   client?: Client;
 
+  registerRoute: boolean = false;
+
   constructor(
     private clientService: ClientsService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.registerRoute = event.url === '/register';
+        console.log(event.url);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getClient();

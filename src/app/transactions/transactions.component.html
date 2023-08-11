@@ -1,1 +1,51 @@
-<p>transactions works!</p>
+<h2>Realizar transferencia</h2>
+
+<button (click)="goBack()">Volver</button>
+
+<form [formGroup]="transactionForm" (submit)="onSubmit()">
+  <div>
+    <p>Account type</p>
+    <select formControlName="type" (change)="setAccountType($event.target)">
+      <option *ngFor="let type of accountTypes" [ngValue]="type">
+        {{ type | titlecase }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <p>From account</p>
+    <select
+      formControlName="FromAccountNumber"
+      (change)="setToAccounts($event.target)"
+    >
+      <option *ngFor="let account of accounts" [ngValue]="account.number">
+        {{ account.number }} | balance: ${{ account.balance }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <p>To account</p>
+    <select
+      *ngIf="
+        selectedAccountType && selectedAccountType.includes('Own accounts');
+        else thirdParty
+      "
+      formControlName="ToAccountNumber"
+    >
+      <option *ngFor="let account of toAccounts" [ngValue]="account.number">
+        {{ account.number }} | balance: ${{ account.balance }}
+      </option>
+    </select>
+    <ng-template #thirdParty>
+      <input formControlName="ToAccountNumber" type="text" />
+    </ng-template>
+  </div>
+  <div>
+    <p>Amount</p>
+    <input formControlName="Amount" type="number" />
+  </div>
+  <div>
+    <p>Description</p>
+    <input formControlName="Description" type="text" />
+  </div>
+  <button type="submit">Transfer</button>
+</form>
