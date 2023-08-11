@@ -1,1 +1,38 @@
-<p>loans works!</p>
+<h2>Loans</h2>
+
+<button (click)="goBack()">Go back</button>
+
+<form [formGroup]="loanForm" (submit)="onSubmit()">
+  <div>
+    <p>Loan type</p>
+    <select
+      formControlName="LoanId"
+      (change)="setSelectedLoanPayments($event.target)"
+    >
+      <option *ngFor="let loan of loans" [ngValue]="loan.id">
+        {{ loan.name | titlecase }} | Max amount: ${{ loan.maxAmount }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <p>Amount</p>
+    <input formControlName="Amount" type="number" />
+  </div>
+  <div>
+    <p>Payments</p>
+    <select formControlName="Payments">
+      <option *ngFor="let num of selectedLoanPayments" [ngValue]="num">
+        {{ num }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <p>To account</p>
+    <select formControlName="ToAccountNumber">
+      <option *ngFor="let account of accounts" [ngValue]="account.number">
+        {{ account.number }} | balance: ${{ account.balance }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Transfer</button>
+</form>

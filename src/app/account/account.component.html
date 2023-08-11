@@ -5,7 +5,7 @@
   <p>Fecha de creación: {{ account.creationDate }}</p>
   <h2 class="text-2xl font-bold">Transacciones</h2>
   <div class="grid gap-4">
-    <div *ngFor="let transaction of account.transactions.$values">
+    <div *ngFor="let transaction of account.transactions.$values.reverse()">
       <p>Tipo: {{ transaction.type }}</p>
       <p
         class="{{ transaction.amount > 0 ? 'text-green-700' : 'text-red-700' }}"

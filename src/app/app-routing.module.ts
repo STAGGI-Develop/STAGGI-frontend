@@ -4,7 +4,6 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountComponent } from './account/account.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { CardsComponent } from './cards/cards.component';
-import { TransferComponent } from './transfer/transfer.component';
 import { LoansComponent } from './loans/loans.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -18,8 +17,8 @@ const routes: Routes = [
   { path: 'transactions', component: TransactionsComponent },
   { path: 'cards', component: CardsComponent },
   { path: 'cards/create', component: CreateCardComponent },
-  { path: 'transfer', component: TransferComponent },
   { path: 'loans', component: LoansComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
 
