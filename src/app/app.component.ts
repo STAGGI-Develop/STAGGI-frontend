@@ -10,8 +10,8 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  // userLoggedIn: boolean = false;
   client?: Client;
+  openMenu: boolean = false;
 
   registerRoute: boolean = false;
 
@@ -40,5 +40,10 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(() => (this.client = undefined));
+  }
+
+  toggleMenu() {
+    this.openMenu = !this.openMenu;
+    console.log(this.openMenu);
   }
 }
