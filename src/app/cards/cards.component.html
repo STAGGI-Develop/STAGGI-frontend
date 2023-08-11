@@ -1,7 +1,5 @@
-<h2>Tarjetas</h2>
-
+<!-- <h2>Tarjetas</h2>
 <a routerLink="/cards/create">Crear tarjeta</a>
-
 <div *ngIf="cards" class="grid gap-4">
   <div *ngFor="let card of cards">
     <p>{{ card.number }}</p>
@@ -11,5 +9,107 @@
     <p>{{ card.cvv }}</p>
     <p>{{ card.fromDate }}</p>
     <p>{{ card.thruDate }}</p>
+  </div>
+</div> -->
+
+<div
+  class="bg-whitesmoke-100 w-full h-auto overflow-hidden flex flex-col box-border items-start justify-start gap-[30px] font-encode"
+>
+  <!-- header -->
+  <div
+    class="self-stretch h-[50px] overflow-hidden shrink-0 flex items-center justify-start gap-[10px]"
+  >
+    <h2 class="font-semibold text-[2rem] text-black">My Cards</h2>
+    <div
+      class="flex items-center self-stretch justify-end flex-1 text-sm font-semibold text-white"
+    >
+      <button
+        class="box-border flex flex-row items-center justify-center h-8 px-3 rounded-lg bg-steelblue"
+      >
+        <a routerLink="/cards/create">New card solicitude</a>
+      </button>
+    </div>
+  </div>
+
+  <!-- debit -->
+  <div class="self-stretch flex flex-col items-start justify-start gap-[10px]">
+    <h3 class="font-medium">Debit cards</h3>
+    <!-- card container -->
+    <div
+      *ngIf="debitCards"
+      class="self-stretch overflow-hidden flex flex-col items-start justify-start text-xl text-black border-t-[4px] border-solid border-steelblue"
+    >
+      <!-- card item -->
+      <div
+        *ngFor="let card of debitCards"
+        class="box-border w-full h-24 overflow-hidden shrink-0 flex flex-row py-3 px-0 items-center justify-start gap-[30px] border-b-[1px] border-solid border-gray"
+      >
+        <!-- card image -->
+        <div
+          class="self-stretch rounded-lg [background:linear-gradient(-68.3deg,_#be8900,_#ffcd4c_49.16%,_#be8900)] w-28"
+        ></div>
+        <!-- card info -->
+        <div
+          class="flex flex-col items-start self-stretch justify-center flex-1 gap-2 px-0 py-5 overflow-hidden"
+        >
+          <span class="font-semibold">STAGGI {{ card.color }}</span>
+          <!-- details -->
+          <div
+            class="h-[30px] overflow-hidden shrink-0 flex flex-row py-5 px-0 box-border items-center justify-start gap-8 text-sm text-dimgray"
+          >
+            <span class="text-lg font-medium">{{ card.number }}</span>
+            <div class="flex flex-row items-end justify-start gap-2">
+              <span class="font-medium">Expires End</span>
+              <span class="text-lg font-medium">12/26</span>
+            </div>
+            <div class="flex flex-row items-end justify-start gap-2">
+              <span class="font-medium">CVV</span>
+              <span class="text-lg font-medium">{{ card.cvv }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- credit -->
+  <div class="self-stretch flex flex-col items-start justify-start gap-[10px]">
+    <h3 class="font-medium">Credit cards</h3>
+    <!-- card container -->
+    <div
+      *ngIf="creditCards"
+      class="self-stretch overflow-hidden flex flex-col items-start justify-start text-xl text-black border-t-[4px] border-solid border-steelblue"
+    >
+      <!-- card item -->
+      <div
+        *ngFor="let card of creditCards"
+        class="box-border w-full h-24 overflow-hidden shrink-0 flex flex-row py-3 px-0 items-center justify-start gap-[30px] border-b-[1px] border-solid border-gray"
+      >
+        <!-- card image -->
+        <div
+          class="self-stretch rounded-lg [background:linear-gradient(-68.3deg,_#be8900,_#ffcd4c_49.16%,_#be8900)] w-28"
+        ></div>
+        <!-- card info -->
+        <div
+          class="flex flex-col items-start self-stretch justify-center flex-1 gap-2 px-0 py-5 overflow-hidden"
+        >
+          <span class="font-semibold">STAGGI {{ card.color }}</span>
+          <!-- details -->
+          <div
+            class="h-[30px] overflow-hidden shrink-0 flex flex-row py-5 px-0 box-border items-center justify-start gap-8 text-sm text-dimgray"
+          >
+            <span class="text-lg font-medium">{{ card.number }}</span>
+            <div class="flex flex-row items-end justify-start gap-2">
+              <span class="font-medium">Expires End</span>
+              <span class="text-lg font-medium">12/26</span>
+            </div>
+            <div class="flex flex-row items-end justify-start gap-2">
+              <span class="font-medium">CVV</span>
+              <span class="text-lg font-medium">{{ card.cvv }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
