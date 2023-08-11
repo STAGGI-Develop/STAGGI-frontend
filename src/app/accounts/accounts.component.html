@@ -1,10 +1,36 @@
-<h2 class="text-2xl font-bold">Cuentas</h2>
+<!-- <h2 class="text-2xl font-bold">Cuentas</h2>
 
 <div class="grid gap-4">
   <button *ngIf="accounts.length < 3" (click)="createAccount()">
     Crear cuenta
-  </button>
-  <div *ngFor="let account of accounts">
+  </button> -->
+
+<div
+  class="self-stretch h-[50px] overflow-hidden shrink-0 flex items-center justify-start gap-[10px]"
+>
+  <h2 class="font-semibold text-[2rem] text-black">My Cards</h2>
+  <div
+    class="flex items-center self-stretch justify-end flex-1 text-sm font-semibold text-white"
+  >
+    <button
+      *ngIf="accounts.length < 3"
+      (click)="createAccount()"
+      class="box-border flex flex-row items-center justify-center h-8 px-3 rounded-lg bg-steelblue"
+    >
+      Create a new account
+    </button>
+  </div>
+</div>
+
+<!-- Accounts container -->
+<div
+  *ngIf="accounts"
+  class="grid items-start text-xl text-black border-t-[4px] border-solid border-steelblue"
+>
+  <div
+    *ngFor="let account of accounts"
+    class="w-full h-24 flex py-3 px-0 items-center justify-start gap-[30px] border-b-[1px] border-solid border-gray"
+  >
     <h2 class="font-bold">
       <a class="hover:opacity-50" routerLink="/accounts/{{ account.id }}">{{
         account.number
