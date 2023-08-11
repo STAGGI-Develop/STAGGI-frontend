@@ -18,8 +18,11 @@
       </div>
     </div>
     <ul
-      class="text-left grid items-center justify-center text-base text-dimgray font-encode bg-white shadow-md py-2 border-t border-gray rounded-b-lg transition-all duration-300"
-      [ngClass]="{ 'opacity-100': openMenu, 'opacity-0': !openMenu }"
+      class="absolute w-full text-left grid items-center justify-center text-base text-dimgray font-encode bg-white shadow-md py-2 border-t border-gray rounded-b-lg transition-all duration-300"
+      [ngClass]="{
+        'opacity-100 top-16': openMenu,
+        'opacity-0 top-[-20rem]': !openMenu
+      }"
     >
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
