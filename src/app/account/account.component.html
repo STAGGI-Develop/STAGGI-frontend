@@ -1,19 +1,54 @@
-<button (click)="goBack()">Volver</button>
-<div *ngIf="account">
-  <h2 class="text-2xl font-bold">{{ account.number }}</h2>
-  <p>Balance: ${{ account.balance }}</p>
-  <p>Fecha de creación: {{ account.creationDate }}</p>
-  <h2 class="text-2xl font-bold">Transacciones</h2>
-  <div class="grid gap-4">
-    <div *ngFor="let transaction of account.transactions.$values.reverse()">
-      <p>Tipo: {{ transaction.type }}</p>
-      <p
-        class="{{ transaction.amount > 0 ? 'text-green-700' : 'text-red-700' }}"
-      >
-        ${{ transaction.amount }}
-      </p>
-      <p>Descripción: {{ transaction.description }}</p>
-      <p>Fecha: {{ transaction.date }}</p>
-    </div>
+<button
+  (click)="goBack()"
+  class="font-semibold text-white text-sm h-8 px-3 rounded-lg bg-steelblue"
+>
+  Go back
+</button>
+
+<!-- account card / item -->
+<div
+  *ngIf="account"
+  class="w-[350px] grid gap-4 mx-auto my-4 py-8 px-8 rounded-md border-[1px] border-solid border-steelblue shadow-md"
+>
+  <div class="w-full flex justify-between items-center">
+    <h4 class="font-semibold text-xl">
+      {{ account.number }}
+    </h4>
+    <p class="text-lg text-slate-600">
+      {{ account.creationDate | date : "dd/MM/yyyy" }}
+    </p>
+  </div>
+  <div>
+    <p class="text-center text-xl">
+      Balance: <span class="font-semibold">${{ account.balance }}</span>
+    </p>
   </div>
 </div>
+
+<!-- transactions table -->
+<h2 class="text-2xl font-semibold">Transactions</h2>
+<table *ngIf="account" class="w-full">
+  <thead>
+    <tr class="border-b-[1px] border-black">
+      <th class="text-left px-3 py-3">ID</th>
+      <th class="text-left px-3 py-3">Description</th>
+      <th class="text-left px-3 py-3">Date</th>
+      <th class="text-left px-3 py-3">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let transaction of account.transactions.$values.reverse()"
+      class="border-b-[1px] border-gray"
+      [ngClass]="{
+        'text-green-700': transaction.amount > 0,
+        'text-red-700': transaction.amount <= 0
+      }"
+    >
+      <td class="px-3 py-3">{{ transaction.id }}</td>
+      <td class="px-3 py-3">{{ transaction.description }}</td>
+      <td class="px-3 py-3">{{ transaction.date | date : "dd/MM/yyyy" }}</td>
+      <td class="px-3 py-3">{{ transaction.amount }}</td>
+    </tr>
+  </tbody>
+</table>
