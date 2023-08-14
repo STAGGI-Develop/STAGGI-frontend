@@ -1,14 +1,8 @@
-<!-- <h2 class="text-2xl font-bold">Cuentas</h2>
-
-<div class="grid gap-4">
-  <button *ngIf="accounts.length < 3" (click)="createAccount()">
-    Crear cuenta
-  </button> -->
-
+<!-- header -->
 <div
-  class="self-stretch h-[50px] overflow-hidden shrink-0 flex items-center justify-start gap-[10px]"
+  class="self-stretch h-[50px] overflow-hidden shrink-0 flex items-center justify-start font-encode gap-[10px]"
 >
-  <h2 class="font-semibold text-[2rem] text-black">My Cards</h2>
+  <h2 class="font-semibold text-[2rem] text-black">My accounts</h2>
   <div
     class="flex items-center self-stretch justify-end flex-1 text-sm font-semibold text-white"
   >
@@ -22,21 +16,33 @@
   </div>
 </div>
 
-<!-- Accounts container -->
+<!-- accounts container -->
 <div
   *ngIf="accounts"
-  class="grid items-start text-xl text-black border-t-[4px] border-solid border-steelblue"
+  class="flex flex-wrap justify-center gap-12 mt-4 py-12 text-xl text-black border-t-[4px] border-solid border-steelblue"
 >
-  <div
+  <!-- account item -->
+  <a
+    class="hover:opacity-50 transition-all duration-300"
     *ngFor="let account of accounts"
-    class="w-full h-24 flex py-3 px-0 items-center justify-start gap-[30px] border-b-[1px] border-solid border-gray"
+    routerLink="/accounts/{{ account.id }}"
   >
-    <h2 class="font-bold">
-      <a class="hover:opacity-50" routerLink="/accounts/{{ account.id }}">{{
-        account.number
-      }}</a>
-    </h2>
-    <p>${{ account.balance }}</p>
-    <p>{{ account.creationDate }}</p>
-  </div>
+    <div
+      class="w-[350px] grid gap-4 py-8 px-8 rounded-md border-[1px] border-solid border-steelblue shadow-md"
+    >
+      <div class="w-full flex justify-between items-center">
+        <h4 class="font-semibold text-xl">
+          {{ account.number }}
+        </h4>
+        <p class="text-lg text-slate-600">
+          {{ account.creationDate | date : "dd/MM/yyyy" }}
+        </p>
+      </div>
+      <div>
+        <p class="text-center text-xl">
+          Balance: <span class="font-semibold">${{ account.balance }}</span>
+        </p>
+      </div>
+    </div>
+  </a>
 </div>
