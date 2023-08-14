@@ -14,4 +14,7 @@
     <p>{{ card.type }}</p>
     <p>{{ card.color }}</p>
   </div>
+  <div *ngFor="let transaction of latestTransactions">
+    <p>{{ transaction.id }}</p>
+  </div>
 </div>
