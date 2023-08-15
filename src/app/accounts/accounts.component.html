@@ -23,7 +23,7 @@
 >
   <!-- account item -->
   <a
-    class="hover:opacity-50 transition-all duration-300"
+    class="rounded-md hover:bg-steelblue hover:text-white transition-all duration-300"
     *ngFor="let account of accounts"
     routerLink="/accounts/{{ account.id }}"
   >
@@ -34,7 +34,7 @@
         <h4 class="font-semibold text-xl">
           {{ account.number }}
         </h4>
-        <p class="text-lg text-slate-600">
+        <p class="text-lg font-light">
           {{ account.creationDate | date : "dd/MM/yyyy" }}
         </p>
       </div>
