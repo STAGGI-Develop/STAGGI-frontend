@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.registerRoute = event.url === '/register';
-        console.log(event.url);
       }
     });
   }
@@ -39,11 +38,13 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe(() => (this.client = undefined));
+    this.authService.logout().subscribe(() => {
+      this.client = undefined;
+      this.router.navigate(['/login']);
+    });
   }
 
   toggleMenu() {
     this.openMenu = !this.openMenu;
-    console.log(this.openMenu);
   }
 }

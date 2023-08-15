@@ -1,15 +1,49 @@
-<h2>Iniciar sesión</h2>
+<div
+  class="border-t border-gray md:min-h-[85vh] md:grid md:justify-center md:items-center bg-neutral-500"
+>
+  <div
+    class="grid justify-center items-center gap-1 bg-white px-20 py-12 md:rounded-md"
+  >
+    <h2 class="text-2xl font-bold text-center mb-3">Sign in</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="email">Email: </label>
-    <input type="text" id="email" formControlName="email" />
-  </div>
-  <div>
-    <label for="email">Password: </label>
-    <input type="password" id="password" formControlName="password" />
-  </div>
-  <button type="submit">Iniciar sesión</button>
-</form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-3">
+      <div class="grid gap-1">
+        <label for="email">Email*</label>
+        <input
+          type="text"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          class="border border-gray py-2 px-4 rounded-md"
+        />
+      </div>
+      <div class="grid gap-1">
+        <label for="email">Password*</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+          class="border border-gray py-2 px-4 rounded-md"
+        />
+      </div>
+      <div class="py-2">
+        <button
+          type="submit"
+          class="font-semibold w-full h-8 px-3 block bg-steelblue text-white rounded-lg border border-steelblue hover:bg-white hover:text-steelblue transition-all duration-300"
+        >
+          Sign in
+        </button>
+      </div>
+    </form>
 
-<a routerLink="/register">Registrarse</a>
+    <div class="grid justify-center">
+      <p>Don't have an account?</p>
+      <a
+        routerLink="/register"
+        class="text-center font-semibold hover:opacity-50 transition-all duration-300"
+        >Sign up</a
+      >
+    </div>
+  </div>
+</div>
