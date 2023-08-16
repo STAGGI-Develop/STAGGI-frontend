@@ -12,10 +12,19 @@ export class RegisterComponent {
   constructor(private clientsService: ClientsService, private router: Router) {}
 
   signupForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   onSubmit() {
@@ -38,5 +47,18 @@ export class RegisterComponent {
     this.clientsService
       .createClient(credentials)
       .subscribe(() => this.router.navigate(['/login']));
+  }
+
+  get firstName() {
+    return this.signupForm.get('firstName');
+  }
+  get lastName() {
+    return this.signupForm.get('lastName');
+  }
+  get email() {
+    return this.signupForm.get('email');
+  }
+  get password() {
+    return this.signupForm.get('password');
   }
 }

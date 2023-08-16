@@ -32,7 +32,7 @@
         (click)="toggleMenu()"
         routerLink="/"
       >
-        <div class="relative">Inicio</div>
+        <div class="relative">Overview</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
@@ -40,7 +40,7 @@
         (click)="toggleMenu()"
         routerLink="/accounts"
       >
-        <div class="relative">Cuentas</div>
+        <div class="relative">Accounts</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
@@ -48,7 +48,7 @@
         (click)="toggleMenu()"
         routerLink="/cards"
       >
-        <div class="relative">Tarjetas</div>
+        <div class="relative">Cards</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
@@ -56,7 +56,7 @@
         (click)="toggleMenu()"
         routerLink="/loans"
       >
-        <div class="relative">Préstamos</div>
+        <div class="relative">Loans</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
@@ -64,13 +64,13 @@
         (click)="toggleMenu()"
         routerLink="/transactions"
       >
-        <div class="relative">Transferencias</div>
+        <div class="relative">Transactions</div>
       </a>
       <button
         (click)="logout(); toggleMenu()"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-2 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke active:text-white active:bg-steelblue"
       >
-        Cerrar sesión
+        Log out
       </button>
     </ul>
   </nav>
@@ -99,41 +99,41 @@
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/"
       >
-        <div class="relative">Inicio</div>
+        <div class="relative">Overview</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/accounts"
       >
-        <div class="relative">Cuentas</div>
+        <div class="relative">Accounts</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/cards"
       >
-        <div class="relative">Tarjetas</div>
+        <div class="relative">Cards</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/loans"
       >
-        <div class="relative">Préstamos</div>
+        <div class="relative">Loans</div>
       </a>
       <a
         [routerLinkActive]="'text-white bg-steelblue hover:!bg-steelblue'"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke"
         routerLink="/transactions"
       >
-        <div class="relative">Transferencias</div>
+        <div class="relative">Transactions</div>
       </a>
       <button
         (click)="logout()"
         class="[text-decoration:none] rounded-xl w-full overflow-hidden flex flex-row py-3.5 px-4 box-border items-center justify-center cursor-pointer text-[inherit] hover:bg-whitesmoke active:text-white active:bg-steelblue"
       >
-        Cerrar sesión
+        Log out
       </button>
     </nav>
   </div>

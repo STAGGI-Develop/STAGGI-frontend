@@ -14,8 +14,21 @@
           id="firstName"
           formControlName="firstName"
           placeholder="First name"
-          class="border border-gray py-2 px-4 rounded-md"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          [ngClass]="{
+            'border-red-700':
+              firstName?.invalid && (firstName?.dirty || firstName?.touched)
+          }"
         />
+        <div
+          *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+          class="text-red-700 text-base"
+        >
+          <p *ngIf="firstName?.errors?.['required']">First name is required</p>
+          <p *ngIf="firstName?.errors?.['minlength']">
+            First name has to be at least 3 characters long
+          </p>
+        </div>
       </div>
       <div class="grid gap-1">
         <label for="lastName">Last name*</label>
@@ -24,8 +37,21 @@
           id="lastName"
           formControlName="lastName"
           placeholder="Last name"
-          class="border border-gray py-2 px-4 rounded-md"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          [ngClass]="{
+            'border-red-700':
+              lastName?.invalid && (lastName?.dirty || lastName?.touched)
+          }"
         />
+        <div
+          *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+          class="text-red-700 text-base"
+        >
+          <p *ngIf="lastName?.errors?.['required']">Last name is required</p>
+          <p *ngIf="lastName?.errors?.['minlength']">
+            Last name has to be at least 3 characters long
+          </p>
+        </div>
       </div>
       <div class="grid gap-1">
         <label for="email">Email*</label>
@@ -34,8 +60,18 @@
           id="email"
           formControlName="email"
           placeholder="Email"
-          class="border border-gray py-2 px-4 rounded-md"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          [ngClass]="{
+            'border-red-700': email?.invalid && (email?.dirty || email?.touched)
+          }"
         />
+        <div
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          class="text-red-700 text-base"
+        >
+          <p *ngIf="email?.errors?.['required']">Email is required</p>
+          <p *ngIf="email?.errors?.['email']">Email is not valid</p>
+        </div>
       </div>
       <div class="grid gap-1">
         <label for="email">Password*</label>
@@ -44,13 +80,31 @@
           id="password"
           formControlName="password"
           placeholder="Password"
-          class="border border-gray py-2 px-4 rounded-md"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          [ngClass]="{
+            'border-red-700':
+              password?.invalid && (password?.dirty || password?.touched)
+          }"
         />
+        <div
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          class="text-red-700 text-base"
+        >
+          <p *ngIf="password?.errors?.['required']">Password is required</p>
+          <p *ngIf="password?.errors?.['minlength']">
+            Password has to be at least 6 characters long
+          </p>
+        </div>
       </div>
       <div class="py-2">
         <button
           type="submit"
-          class="font-semibold w-full h-8 px-3 block bg-steelblue text-white rounded-lg border border-steelblue hover:bg-white hover:text-steelblue transition-all duration-300"
+          class="font-semibold w-full h-8 px-3 block text-white rounded-lg transition-all duration-300"
+          [ngClass]="{
+            'bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue':
+              signupForm.valid,
+            'bg-gray': !signupForm.valid
+          }"
         >
           Sign up
         </button>

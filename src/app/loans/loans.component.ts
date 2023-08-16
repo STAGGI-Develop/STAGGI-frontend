@@ -18,10 +18,10 @@ export class LoansComponent implements OnInit {
   selectedLoanPayments: string[] = [];
 
   loanForm = new FormGroup({
-    LoanId: new FormControl(0),
-    Amount: new FormControl(0),
-    Payments: new FormControl(''),
-    ToAccountNumber: new FormControl(''),
+    LoanId: new FormControl(0, [Validators.required]),
+    Amount: new FormControl(0, [Validators.required]),
+    Payments: new FormControl('', [Validators.required]),
+    ToAccountNumber: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -50,15 +50,27 @@ export class LoansComponent implements OnInit {
   }
 
   getLoans() {
-    this.loansService
-      .getLoans()
-      .subscribe((loans) => (this.loans = loans.$values));
+    this.loansService.getLoans().subscribe((loans) => {
+      this.loans = loans.$values;
+      this.loanForm.controls.LoanId.setValue(loans.$values[0].id);
+      this.loanForm.controls.Amount.setValue(loans.$values[0].maxAmount);
+      this.selectedLoanPayments = loans.$values[0].payments.split(',');
+      this.loanForm.controls.Payments.setValue(
+        loans.$values[0].payments.split(',')[0]
+      );
+      this.loanForm.controls.Amount.addValidators(
+        Validators.max(loans.$values[0].maxAmount)
+      );
+    });
   }
 
   getAccounts() {
-    this.accountsService
-      .getClientAccounts()
-      .subscribe((accounts) => (this.accounts = accounts.$values));
+    this.accountsService.getClientAccounts().subscribe((accounts) => {
+      this.accounts = accounts.$values;
+      this.loanForm.controls.ToAccountNumber.setValue(
+        accounts.$values[0].number
+      );
+    });
   }
 
   applyForLoan(data: LoanApplication) {
@@ -75,6 +87,11 @@ export class LoansComponent implements OnInit {
     console.log({ loans: this.loans, loanId, loan });
     if (loan) {
       this.selectedLoanPayments = loan!.payments.split(',');
+      this.loanForm.controls.Amount.clearValidators();
+      this.loanForm.controls.Amount.addValidators([
+        Validators.required,
+        Validators.max(loan.maxAmount),
+      ]);
     }
   }
 

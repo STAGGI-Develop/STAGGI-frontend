@@ -1,23 +1,50 @@
-<h2>Crear tarjeta</h2>
+<button
+  (click)="goBack()"
+  class="font-semibold text-white text-sm h-8 px-3 rounded-lg bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue transition-all duration-300"
+>
+  Go back
+</button>
 
-<button (click)="goBack()">Volver</button>
-
-<form [formGroup]="cardForm" (submit)="onSubmit()">
-  <div>
-    <select formControlName="type">
-      <option [ngValue]="null" disabled>Seleccione un tipo de tarjeta</option>
-      <option *ngFor="let type of types" [ngValue]="type">
-        {{ type | titlecase }}
-      </option>
-    </select>
+<div class="mt-2">
+  <div class="grid justify-center items-center gap-1">
+    <h2 class="text-2xl font-bold text-center mb-3">Create card</h2>
+    <form [formGroup]="cardForm" (submit)="onSubmit()" class="space-y-3">
+      <div class="grid gap-1">
+        <label>Card type</label>
+        <select
+          formControlName="type"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+        >
+          <option *ngFor="let type of types" [ngValue]="type">
+            {{ type | titlecase }}
+          </option>
+        </select>
+      </div>
+      <div class="grid gap-1">
+        <label>Card color</label>
+        <select
+          formControlName="color"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+        >
+          <option *ngFor="let color of colors" [ngValue]="color">
+            {{ color | titlecase }}
+          </option>
+        </select>
+      </div>
+      <div class="py-2">
+        <button
+          type="submit"
+          [disabled]="!cardForm.valid"
+          class="font-semibold w-full h-8 px-3 block text-white rounded-lg transition-all duration-300"
+          [ngClass]="{
+            'bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue':
+              cardForm.valid,
+            'bg-gray': !cardForm.valid
+          }"
+        >
+          Create
+        </button>
+      </div>
+    </form>
   </div>
-  <div>
-    <select formControlName="color">
-      <option [ngValue]="null">Seleccione un color</option>
-      <option *ngFor="let color of colors" [ngValue]="color">
-        {{ color | titlecase }}
-      </option>
-    </select>
-  </div>
-  <button type="submit">Crear</button>
-</form>
+</div>

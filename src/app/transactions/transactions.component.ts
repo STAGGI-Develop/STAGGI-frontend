@@ -16,14 +16,16 @@ export class TransactionsComponent implements OnInit {
   toAccounts: Account[] = [];
 
   accountTypes = ['Own accounts', 'Third party accounts'];
-  selectedAccountType: string | null = null;
+  selectedAccountType: string | null = 'Own accounts';
 
   transactionForm = new FormGroup({
-    type: new FormControl(''),
-    FromAccountNumber: new FormControl(''),
-    ToAccountNumber: new FormControl(''),
-    Amount: new FormControl(0),
-    Description: new FormControl(''),
+    type: new FormControl('Own accounts', [Validators.required]),
+    FromAccountNumber: new FormControl(this.accounts[0]?.number || '', [
+      Validators.required,
+    ]),
+    ToAccountNumber: new FormControl('', [Validators.required]),
+    Amount: new FormControl(1000, [Validators.required, Validators.min(1)]),
+    Description: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -38,9 +40,13 @@ export class TransactionsComponent implements OnInit {
   }
 
   getAccounts(): void {
-    this.accountsService
-      .getClientAccounts()
-      .subscribe((accounts) => (this.accounts = accounts.$values));
+    this.accountsService.getClientAccounts().subscribe((accounts) => {
+      this.accounts = accounts.$values;
+      this.transactionForm.controls['FromAccountNumber'].setValue(
+        accounts.$values[0].number
+      );
+      this.setToAccounts({ value: accounts.$values[0].number });
+    });
   }
 
   onSubmit() {

@@ -1,51 +1,97 @@
-<h2>Realizar transferencia</h2>
-
-<button (click)="goBack()">Volver</button>
-
-<form [formGroup]="transactionForm" (submit)="onSubmit()">
-  <div>
-    <p>Account type</p>
-    <select formControlName="type" (change)="setAccountType($event.target)">
-      <option *ngFor="let type of accountTypes" [ngValue]="type">
-        {{ type | titlecase }}
-      </option>
-    </select>
+<button
+  (click)="goBack()"
+  class="font-semibold text-white text-sm h-8 px-3 rounded-lg bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue transition-all duration-300"
+>
+  Go back
+</button>
+<div class="mt-2">
+  <div class="grid justify-center items-center gap-1">
+    <h2 class="text-2xl font-bold text-center mb-3">Make transaction</h2>
+    <form [formGroup]="transactionForm" (submit)="onSubmit()" class="space-y-3">
+      <div class="grid gap-1">
+        <p>Account type</p>
+        <select
+          formControlName="type"
+          (change)="setAccountType($event.target)"
+          class="border border-gray py-2 px-4 rounded-md w-[285px]"
+        >
+          <option *ngFor="let type of accountTypes" [ngValue]="type">
+            {{ type | titlecase }}
+          </option>
+        </select>
+      </div>
+      <div class="grid gap-3 lg:flex lg:gap-6">
+        <div class="grid gap-1">
+          <p>From account</p>
+          <select
+            formControlName="FromAccountNumber"
+            (change)="setToAccounts($event.target)"
+            class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          >
+            <option *ngFor="let account of accounts" [ngValue]="account.number">
+              {{ account.number }} | balance: ${{ account.balance }}
+            </option>
+          </select>
+        </div>
+        <div class="grid gap-1">
+          <p>To account</p>
+          <select
+            *ngIf="
+              selectedAccountType &&
+                selectedAccountType.includes('Own accounts');
+              else thirdParty
+            "
+            formControlName="ToAccountNumber"
+            class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          >
+            <option
+              *ngFor="let account of toAccounts"
+              [ngValue]="account.number"
+            >
+              {{ account.number }} | balance: ${{ account.balance }}
+            </option>
+          </select>
+          <ng-template #thirdParty>
+            <input
+              formControlName="ToAccountNumber"
+              type="text"
+              class="border border-gray py-2 px-4 rounded-md w-[285px]"
+            />
+          </ng-template>
+        </div>
+      </div>
+      <div class="grid gap-3 lg:flex lg:gap-6">
+        <div class="grid gap-1">
+          <p>Amount</p>
+          <input
+            formControlName="Amount"
+            type="number"
+            class="border border-gray py-2 px-4 rounded-md w-[285px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          />
+        </div>
+        <div class="grid gap-1">
+          <p>Description</p>
+          <input
+            formControlName="Description"
+            type="text"
+            class="border border-gray py-2 px-4 rounded-md w-[285px]"
+          />
+        </div>
+      </div>
+      <div class="py-2">
+        <button
+          type="submit"
+          [disabled]="!transactionForm.valid"
+          class="font-semibold w-full h-8 px-3 block text-white rounded-lg transition-all duration-300 lg:w-1/2 lg:mx-auto"
+          [ngClass]="{
+            'bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue':
+              transactionForm.valid,
+            'bg-gray': !transactionForm.valid
+          }"
+        >
+          Transfer
+        </button>
+      </div>
+    </form>
   </div>
-  <div>
-    <p>From account</p>
-    <select
-      formControlName="FromAccountNumber"
-      (change)="setToAccounts($event.target)"
-    >
-      <option *ngFor="let account of accounts" [ngValue]="account.number">
-        {{ account.number }} | balance: ${{ account.balance }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <p>To account</p>
-    <select
-      *ngIf="
-        selectedAccountType && selectedAccountType.includes('Own accounts');
-        else thirdParty
-      "
-      formControlName="ToAccountNumber"
-    >
-      <option *ngFor="let account of toAccounts" [ngValue]="account.number">
-        {{ account.number }} | balance: ${{ account.balance }}
-      </option>
-    </select>
-    <ng-template #thirdParty>
-      <input formControlName="ToAccountNumber" type="text" />
-    </ng-template>
-  </div>
-  <div>
-    <p>Amount</p>
-    <input formControlName="Amount" type="number" />
-  </div>
-  <div>
-    <p>Description</p>
-    <input formControlName="Description" type="text" />
-  </div>
-  <button type="submit">Transfer</button>
-</form>
+</div>

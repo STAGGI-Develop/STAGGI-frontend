@@ -1,17 +1,3 @@
-<!-- <h2>Tarjetas</h2>
-<a routerLink="/cards/create">Crear tarjeta</a>
-<div *ngIf="cards" class="grid gap-4">
-  <div *ngFor="let card of cards">
-    <p>{{ card.number }}</p>
-    <p>{{ card.cardHolder }}</p>
-    <p>{{ card.type }}</p>
-    <p>{{ card.color }}</p>
-    <p>{{ card.cvv }}</p>
-    <p>{{ card.fromDate }}</p>
-    <p>{{ card.thruDate }}</p>
-  </div>
-</div> -->
-
 <div
   class="bg-whitesmoke-100 w-full h-auto overflow-hidden flex flex-col box-border items-start justify-start gap-[30px] font-encode"
 >
@@ -24,7 +10,8 @@
       class="flex items-center self-stretch justify-end flex-1 text-sm font-semibold text-white"
     >
       <button
-        class="box-border flex flex-row items-center justify-center h-8 px-3 rounded-lg bg-steelblue"
+        *ngIf="debitCards.length < 3 || creditCards.length < 3"
+        class="box-border flex flex-row items-center justify-center h-8 px-3 rounded-lg bg-steelblue border border-steelblue hover:bg-white hover:text-steelblue transition-all duration-300"
       >
         <a routerLink="/cards/create">New card solicitude</a>
       </button>
@@ -32,11 +19,13 @@
   </div>
 
   <!-- debit -->
-  <div class="self-stretch flex flex-col items-start justify-start gap-[10px]">
+  <div
+    *ngIf="debitCards.length"
+    class="self-stretch flex flex-col items-start justify-start gap-[10px]"
+  >
     <h3 class="font-medium">Debit cards</h3>
     <!-- card container -->
     <div
-      *ngIf="debitCards"
       class="self-stretch overflow-hidden flex flex-col items-start justify-start text-xl text-black border-t-[4px] border-solid border-steelblue"
     >
       <!-- card item -->
@@ -73,11 +62,13 @@
   </div>
 
   <!-- credit -->
-  <div class="self-stretch flex flex-col items-start justify-start gap-[10px]">
+  <div
+    *ngIf="creditCards.length"
+    class="self-stretch flex flex-col items-start justify-start gap-[10px]"
+  >
     <h3 class="font-medium">Credit cards</h3>
     <!-- card container -->
     <div
-      *ngIf="creditCards"
       class="self-stretch overflow-hidden flex flex-col items-start justify-start text-xl text-black border-t-[4px] border-solid border-steelblue"
     >
       <!-- card item -->
