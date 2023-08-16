@@ -1,6 +1,7 @@
-<div class="md:h-screen md:flex">
+<div [ngClass]="{ 'md:h-full md:min-h-screen md:flex': client }">
   <!-- Mobile navbar -->
   <nav
+    *ngIf="client; else logo"
     class="md:hidden fixed top-0 w-full h-16 text-black bg-white shadow-md z-10"
   >
     <div class="w-full h-full flex items-center justify-between px-8">
@@ -76,7 +77,8 @@
 
   <!-- Desktop navbar -->
   <div
-    class="hidden md:flex box-border w-[240px] h-full overflow-hidden flex-col items-center justify-start border-r-[1px] border-solid border-gray"
+    *ngIf="client"
+    class="hidden md:flex box-border w-[240px] h-full overflow-hidden flex-col items-center justify-start"
   >
     <div
       id="LogoContainer"
@@ -135,11 +137,17 @@
       </button>
     </nav>
   </div>
-  <div class="w-full">
+  <ng-template #logo>
+    <div id="LogoContainer" class="grid justify-center py-6">
+      <img class="" alt="" src="/assets/logocompact-1.svg" />
+    </div>
+  </ng-template>
+  <div class="w-full border-l border-solid border-gray">
     <div
-      class="box-border w-full h-[60px] overflow-hidden border-b-[1px] border-solid border-gray"
+      class="box-border w-full overflow-hidden border-solid border-gray"
+      [ngClass]="{ 'h-[60px] border-b-[1px]': client }"
     ></div>
-    <main class="px-4 py-4">
+    <main [ngClass]="{ 'px-4 py-4': client }">
       <router-outlet *ngIf="client; else auth"></router-outlet>
       <ng-template #auth>
         <app-register *ngIf="registerRoute; else login"></app-register>
