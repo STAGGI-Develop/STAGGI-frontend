@@ -13,8 +13,8 @@ export class CreateCardComponent {
   colors = ['SILVER', 'GOLD', 'TITANIUM'];
 
   cardForm = new FormGroup({
-    type: new FormControl(''),
-    color: new FormControl(''),
+    type: new FormControl(this.types[0], [Validators.required]),
+    color: new FormControl(this.colors[0], [Validators.required]),
   });
 
   constructor(private cardsService: CardsService, private location: Location) {}

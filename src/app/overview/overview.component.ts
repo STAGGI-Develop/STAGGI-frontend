@@ -30,8 +30,8 @@ export class OverviewComponent implements OnInit {
 
   getLatestTransactions() {
     this.accountsService.getClientAccounts().subscribe((accounts) => {
-      const allTransactions = accounts.$values.flatMap(
-        (acc) => acc.transactions.$values
+      const allTransactions = accounts.$values.flatMap((acc) =>
+        acc.transactions.$values.map((tr) => ({ ...tr, account: acc.number }))
       );
 
       this.latestTransactions = allTransactions
