@@ -78,6 +78,9 @@
           />
         </div>
       </div>
+      <div *ngIf="error" class="text-base text-red-700 text-center">
+        <p>{{ error }}</p>
+      </div>
       <div class="py-2">
         <button
           type="submit"

@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Account, Transfer } from '../interfaces';
 import { AccountsService } from '../accounts.service';
 import { TransactionsService } from '../transactions.service';
+import { EMPTY, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
@@ -14,6 +15,7 @@ import { TransactionsService } from '../transactions.service';
 export class TransactionsComponent implements OnInit {
   accounts: Account[] = [];
   toAccounts: Account[] = [];
+  error: string = '';
 
   accountTypes = ['Own accounts', 'Third party accounts'];
   selectedAccountType: string | null = 'Own accounts';
@@ -59,6 +61,8 @@ export class TransactionsComponent implements OnInit {
       return;
     }
 
+    this.error = '';
+
     this.createTransaction({
       FromAccountNumber,
       ToAccountNumber,
@@ -70,7 +74,10 @@ export class TransactionsComponent implements OnInit {
   createTransaction(data: Transfer) {
     this.transactionsService
       .createTransaction(data)
-      .subscribe(() => this.router.navigate(['/accounts']));
+      .pipe(catchError((error) => (this.error = error.error)))
+      .subscribe({
+        next: () => !this.error && this.router.navigate(['/accounts']),
+      });
   }
 
   goBack(): void {

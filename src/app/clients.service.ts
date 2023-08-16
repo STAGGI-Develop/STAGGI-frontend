@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Client, Clients } from './interfaces';
 import { BASE_URL } from 'src/environments/environment';
+import { EMPTY, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,9 @@ export class ClientsService {
 
   getCurrentClient() {
     const url = `${this.baseUrl}/current`;
-    return this.http.get<Client>(url, { withCredentials: true });
+    return this.http
+      .get<Client>(url, { withCredentials: true })
+      .pipe(catchError(() => EMPTY));
   }
 
   createClient(credentials: {
