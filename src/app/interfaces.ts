@@ -30,6 +30,7 @@ export interface Transaction {
   amount: number;
   description: string;
   date: string | Date;
+  account?: string;
 }
 
 export interface Transactions {

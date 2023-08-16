@@ -6,7 +6,7 @@
     </h2>
     <p class="text-center text-slate-600 font-medium">{{ client.email }}</p>
   </div>
-  <div class="space-y-6 lg:space-y-0 lg:flex lg:gap-12 lg:justify-between">
+  <div class="space-y-6 xl:space-y-0 xl:flex xl:gap-12 xl:justify-between">
     <div class="space-y-6 mx-auto">
       <!-- accounts -->
       <div>
@@ -42,33 +42,51 @@
       <div>
         <h2 class="font-bold text-2xl mb-3">My cards</h2>
         <div
-          class="self-stretch overflow-hidden flex flex-col items-start justify-start text-xl text-black"
+          class="self-stretch overflow-hidden flex flex-col items-start justify-start sm:text-xl text-black border-t-[4px] border-solid border-steelblue"
         >
           <div
             *ngFor="let card of client.cards.$values.slice(0, 3)"
-            class="box-border w-full h-24 overflow-hidden shrink-0 flex flex-row py-3 px-0 items-center justify-start gap-[30px] border-b-[1px] border-solid border-gray"
+            class="box-border w-full h-24 overflow-hidden shrink-0 flex flex-row py-3 px-0 items-center justify-start gap-2 border-b-[1px] border-solid border-gray sm:gap-[30px]"
           >
             <div
-              class="self-stretch rounded-lg [background:linear-gradient(-68.3deg,_#be8900,_#ffcd4c_49.16%,_#be8900)] w-28"
+              class="self-stretch rounded-lg w-28 scale-[.8] sm:scale-100"
+              [ngClass]="{
+                '[background:linear-gradient(-68.3deg,_#be8900,_#ffcd4c_49.16%,_#be8900)]':
+                  card.color === 'GOLD',
+                '[background:linear-gradient(-68.3deg,_#c0c0c0,_#ffffff_49.16%,_#c0c0c0)]':
+                  card.color === 'SILVER',
+                '[background:linear-gradient(-68.3deg,_#077cc0,_#4ebaf9_49.16%,_#077cc0)]':
+                  card.color === 'TITANIUM'
+              }"
             ></div>
             <div
               class="flex flex-col items-start self-stretch justify-center flex-1 gap-2 px-0 py-5 overflow-hidden"
             >
               <div class="flex w-full justify-between items-center pr-4">
                 <span class="font-semibold">STAGGI {{ card.color }}</span>
-                <span class="text-base font-medium">{{ card.type }}</span>
+                <span class="text-base font-semibold">{{ card.type }}</span>
               </div>
               <div
-                class="h-[30px] overflow-hidden shrink-0 flex flex-row py-5 px-0 box-border items-center justify-start gap-8 text-sm text-dimgray"
+                class="h-[30px] overflow-hidden shrink-0 flex flex-row py-5 px-0 box-border items-center justify-start gap-4 text-sm text-dimgray sm:gap-8"
               >
-                <span class="text-lg font-medium">{{ card.number }}</span>
-                <div class="flex flex-row items-end justify-start gap-2">
-                  <span class="font-medium">Expires End</span>
-                  <span class="text-lg font-medium">12/26</span>
+                <span class="text-base font-medium sm:text-lg">{{
+                  card.number
+                }}</span>
+                <div
+                  class="flex flex-col sm:flex-row sm:items-center justify-start sm:gap-2"
+                >
+                  <span class="font-medium">Expires</span>
+                  <span class="text-sm font-medium sm:text-lg">{{
+                    card.thruDate | date : "MM/yy"
+                  }}</span>
                 </div>
-                <div class="flex flex-row items-end justify-start gap-2">
+                <div
+                  class="flex flex-col sm:flex-row sm:items-center justify-start sm:gap-2"
+                >
                   <span class="font-medium">CVV</span>
-                  <span class="text-lg font-medium">{{ card.cvv }}</span>
+                  <span class="text-sm font-medium sm:text-lg">{{
+                    card.cvv
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -86,14 +104,15 @@
     </div>
 
     <!-- transactions -->
-    <div class="lg:basis-[30%] mx-auto">
+    <div class="xl:basis-[30%] mx-auto">
       <h2 class="font-bold text-2xl mb-3 text-center">Latest transactions</h2>
       <table class="w-full bg-neutral-100 rounded-md text-base">
         <thead>
           <tr class="border-b-[1px] border-black">
-            <th class="text-left px-3 py-3">Description</th>
-            <th class="text-left px-3 py-3">Date</th>
-            <th class="text-left px-3 py-3">Amount</th>
+            <th class="text-left px-2 py-3 sm:px-3">Account</th>
+            <th class="text-left px-2 py-3 sm:px-3">Description</th>
+            <th class="text-left px-2 py-3 sm:px-3">Date</th>
+            <th class="text-left px-2 py-3 sm:px-3">Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -105,17 +124,20 @@
               'text-red-700': transaction.amount <= 0
             }"
           >
-            <td class="px-3 py-3">
+            <td class="px-2 py-3 sm:px-3">
+              {{ transaction.account }}
+            </td>
+            <td class="px-2 py-3 sm:px-3">
               {{
                 transaction.description.length > 20
                   ? (transaction.description | slice : 0 : 20) + "..."
                   : transaction.description
               }}
             </td>
-            <td class="px-3 py-3">
+            <td class="px-2 py-3 sm:px-3">
               {{ transaction.date | date : "dd/MM/yyyy" }}
             </td>
-            <td class="px-3 py-3">{{ transaction.amount }}</td>
+            <td class="px-2 py-3 sm:px-3">{{ transaction.amount }}</td>
           </tr>
         </tbody>
       </table>
