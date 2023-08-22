@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { EMPTY, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +17,26 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  error: string = '';
+
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     if (!email || !password) return;
+
+    this.error = '';
     if (this.loginForm.valid) {
-      this.authService.login({ email, password }).subscribe(() => {
-        this.userLoggedIn.emit(true);
-        this.router.navigate(['/']);
-      });
+      this.authService
+        .login({ email, password })
+        .pipe(catchError((error) => (this.error = 'Wrong email or password')))
+        .subscribe({
+          next: () => {
+            this.userLoggedIn.emit(true);
+            this.router.navigate(['/']);
+          },
+        });
     } else {
       console.error('Algo salió mal');
     }

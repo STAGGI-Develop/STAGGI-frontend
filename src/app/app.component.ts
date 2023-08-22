@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ClientsService } from './clients.service';
 import { Client } from './interfaces';
 import { AuthService } from './auth.service';
+import { EMPTY, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
   getClient() {
     this.clientService
       .getCurrentClient()
-      .subscribe((client) => (this.client = client));
+      .subscribe({ next: (client) => (this.client = client) });
   }
 
   logout() {

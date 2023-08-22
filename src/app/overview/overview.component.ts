@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client, Transaction } from '../interfaces';
 import { ClientsService } from '../clients.service';
 import { AccountsService } from '../accounts.service';
+import { EMPTY, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-overview',
@@ -23,8 +24,10 @@ export class OverviewComponent implements OnInit {
   }
 
   getClient() {
-    this.clientsService.getCurrentClient().subscribe((client) => {
-      this.client = client;
+    this.clientsService.getCurrentClient().subscribe({
+      next: (client) => {
+        this.client = client;
+      },
     });
   }
 

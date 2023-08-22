@@ -19,7 +19,7 @@ export class LoansComponent implements OnInit {
 
   loanForm = new FormGroup({
     LoanId: new FormControl(0, [Validators.required]),
-    Amount: new FormControl(0, [Validators.required]),
+    Amount: new FormControl(0, [Validators.required, Validators.min(1000)]),
     Payments: new FormControl('', [Validators.required]),
     ToAccountNumber: new FormControl('', [Validators.required]),
   });
@@ -90,6 +90,7 @@ export class LoansComponent implements OnInit {
       this.loanForm.controls.Amount.clearValidators();
       this.loanForm.controls.Amount.addValidators([
         Validators.required,
+        Validators.min(1000),
         Validators.max(loan.maxAmount),
       ]);
     }
